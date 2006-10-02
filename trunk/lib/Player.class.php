@@ -7,7 +7,7 @@ class Player
 	
 	public function __get($name)
 	{
-		if(isset($this->$name))
+		if(isset($this->{$name}))
 		{
 			return $this->$name;
 		}
@@ -17,7 +17,7 @@ class Player
 	
 	public function __set($name, $val)
 	{
-		if(isset($this->$name))
+		if(isset($this->{$name}))
 		{
 			$this->$name = $val;
 			return true;
