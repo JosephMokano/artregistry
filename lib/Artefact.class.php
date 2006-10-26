@@ -1,6 +1,6 @@
 <?php
 
-class Artifact
+class Artiefact
 {
 	protected $description;
 	protected $type;
