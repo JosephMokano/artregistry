@@ -1,6 +1,6 @@
 <?php
 
-$link = new mysqli('localhost', 'root', 'lazgi2006', 'artregistry');
+$link = new mysqli('localhost', 'artreguser', 'password', 'artregistry');
 
 $result = $link->query("SELECT * FROM artefact_size");
 
