@@ -2,34 +2,34 @@
 
 class Artefact
 {
-	protected $description;
-	protected $type;
-	protected $size;
-	protected $bonus;
+	private $bonus;
+	private $resource;
+	private $size;
+	private $name;
 	
 	public function __construct()
 	{
 		
 	}
 	
-	public function getDescription()
+	public function getBonus()
 	{
-		return $this->description;
+		return $this->bonus;
 	}
 	
-	public function setDescription($val)
+	public function setBonus($val)
 	{
-		$this->description = $val;
+		$this->bonus = $val;
 	}
 	
-	public function getType()
+	public function getResource()
 	{
-		return $this->type;
+		return $this->resource;
 	}
 	
-	public function setType($val)
+	public function setResource($val)
 	{
-		$this->type = $val;
+		$this->resource = $val;
 	}
 	
 	public function getSize()
@@ -42,14 +42,14 @@ class Artefact
 		$this->size = $val;
 	}
 	
-	public function getBonus()
+	public function getName()
 	{
-		return $this->bonus;
+		return $this->name;
 	}
 	
-	public function setBonus($val)
+	public function setName($val)
 	{
-		$this->bonus = $val;
+		$this->name = $val;
 	}
 }
 
