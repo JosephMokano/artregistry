@@ -3,7 +3,7 @@
 class Player
 {
 	private $nickname;
-	private $artifacts;
+	final protected $artifacts;
 	
 	public function __get($name)
 	{
