@@ -2,8 +2,8 @@
 
 class Player
 {
-	protected $nickname;
-	protected $artifacts;
+	private $nickname;
+	private $artifacts;
 	
 	public function __get($name)
 	{
