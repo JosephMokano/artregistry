@@ -1,15 +1,19 @@
 <?php
+require_once "IDBObject.interface.php";
 
-class Artefact
+class Artefact implements IDBObject
 {
 	private $bonus;
 	private $resource;
 	private $size;
 	private $name;
 	
-	public function __construct()
+	public function __construct($bonus = NULL, $resource = NULL, $size = NULL, $name = NULL)
 	{
-		
+		$this->bonus = $bonus;
+		$this->resource = $resource;
+		$this->size = $size;
+		$this->name = $name;
 	}
 	
 	public function getBonus()
@@ -50,6 +54,18 @@ class Artefact
 	public function setName($val)
 	{
 		$this->name = $val;
+	}
+	
+	public function insert()
+	{
+	}
+	
+	public function update()
+	{
+	}
+	
+	public function delete()
+	{
 	}
 }
 
