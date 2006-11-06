@@ -1,29 +1,38 @@
 <?php
 
-class Player
+class Player implements IDBObject
 {
-	private $nickname;
-	final protected $artifacts;
+	private $name;
+	private $artifacts;
 	
-	public function __get($name)
+	public function __construct($name=NULL)
 	{
-		if(isset($this->{$name}))
-		{
-			return $this->$name;
-		}
-		
-		return false;
+		$this->name = $name;
 	}
 	
-	public function __set($name, $val)
+	public function getName()
 	{
-		if(isset($this->{$name}))
-		{
-			$this->$name = $val;
-			return true;
-		}
 		
-		return false;
+	}
+	
+	public function setName($val)
+	{
+		$this->name = $val;
+	}
+	
+	public function insert()
+	{
+		
+	}
+	
+	public function update()
+	{
+		
+	}
+	
+	public function delete()
+	{
+		
 	}
 }
 
