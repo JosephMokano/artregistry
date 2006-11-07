@@ -1,7 +1,7 @@
 <?php
 require_once "lib/Player.class.php";
 
-$player = Player::get($_USER_FIELD_MAP["username"]."='".$_POST["logon"]["username"]."' AND ".$_USER_FIELD_MAP["password"]."='".md5($_POST["logon"]["password"])."'");
+//$player = Player::get($_USER_FIELD_MAP["username"]."='".$_POST["logon"]["username"]."' AND ".$_USER_FIELD_MAP["password"]."='".md5($_POST["logon"]["password"])."'");
 
 if($player){
 	$player = $player[0];
