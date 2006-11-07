@@ -1,4 +1,5 @@
 <?php
+require_once "lib/IDBObject.interface.php";
 
 class Player implements IDBObject
 {
