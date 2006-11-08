@@ -1,4 +1,5 @@
 <?php
+require_once "lib/Player.class.php";
 require_once "lib/ICollection.interface.php";
 require_once "lib/IDBObject.interface.php";
 
@@ -15,6 +16,28 @@ class PlayerCollection implements ICollection, IDBObject
 	{
 		
 	}
+	
+	public function clear()
+	{
+		
+	}
+	
+	public function contains(Player $item)
+	{
+		
+	}
+	
+	public function count()
+	{
+		
+	}
+	
+	public function remove(Player $item)
+	{
+		
+	}
+	
+	
 }
 
 ?>
