@@ -1,7 +1,8 @@
 <?php
 require_once "lib/IDBObject.interface.php";
+require_once "lib/Object.class.php";
 
-class Player implements IDBObject
+class Player extends Object implements IDBObject
 {
 	private $name;
 	private $artifacts;

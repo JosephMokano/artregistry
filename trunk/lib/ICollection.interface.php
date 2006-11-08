@@ -1,12 +1,13 @@
 <?php
+require_once "lib/Object.class.php";
 
 interface ICollection
 {
-	public function add($item);
+	public function add(Object $item);
 	public function clear();
-	public function contains();
+	public function contains(Object $item);
 	public function count();
-	public function remove();
+	public function remove(Object $item);
 }
 
 ?>
