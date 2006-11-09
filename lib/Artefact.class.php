@@ -56,15 +56,15 @@ class Artefact implements IDBObject
 		$this->name = $val;
 	}
 	
-	public function insert()
+	public function dbInsert()
 	{
 	}
 	
-	public function update()
+	public function dbUpdate()
 	{
 	}
 	
-	public function delete()
+	public function dbDelete()
 	{
 	}
 }

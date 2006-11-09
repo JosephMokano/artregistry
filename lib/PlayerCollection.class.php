@@ -9,35 +9,66 @@ class PlayerCollection implements ICollection, IDBObject
 	
 	public function __construct()
 	{
-		
+		$this->item = NULL;
 	}
 	
-	public function add(Player $item)
+	public function add($item)
 	{
-		
+		$this->item[] = $item;
 	}
 	
 	public function clear()
 	{
-		
+		$this->$item = NULL;
 	}
 	
-	public function contains(Player $item)
+	public function contains($item)
 	{
-		
+		return in_array($item, $this->item);
 	}
 	
 	public function count()
 	{
-		
+		return count($this->item);
 	}
 	
-	public function remove(Player $item)
+	public function remove($item)
 	{
 		
 	}
 	
+	public function dbInsert()
+	{
+		if($this->item)
+		{
+			foreach($this->item as $player)
+			{
+				$player->dbInsert();
+			}
+		}
+	}
 	
+	public function dbUpdate()
+	{
+		if($this->item)
+		{
+			foreach($this->item as $player)
+			{
+				$player->dbUpdate();
+			}
+		}
+	}
+	
+	public function dbDelete()
+	{
+		if($this->item)
+		{
+			foreach($this->item as $player)
+			{
+				$player->dbDelete();
+			}
+		}
+	}
 }
 
 ?>

@@ -2,9 +2,9 @@
 
 interface IDBObject
 {
-	public function insert();
-	public function update();
-	public function delete();
+	public function dbInsert();
+	public function dbUpdate();
+	public function dbDelete();
 }
 
 ?>

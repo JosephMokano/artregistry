@@ -2,7 +2,7 @@
 
 class Object
 {
-	
+	private $id;
 }
 
 ?>
