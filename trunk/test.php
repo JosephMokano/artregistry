@@ -16,12 +16,19 @@ $result = $link->query("SELECT * FROM artefact_size");
 while($row = $result->fetch_array())
 echo "<br>" . $row["artefact_size_id"] . " " . $row["artefact_size_name"];
 
-$myArtefact = new Artefact();
 
-$test = new PlayerCollection();
+$test = new PlayerCollection;
 
-$test2 = new Player();
+for($i=1; $i<11; $i++)
+{
+	$myplayer = new Player("player".$i);
+	$test->add($myplayer);
+	$myplayer = new Player("player3");
+}
 
+$myplayer = new Player("player3");
+echo "<br>";
+echo $test->contains($myplayer) ? "yes" : "no";
 ?>
 </body>
 </html>

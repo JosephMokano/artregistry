@@ -1,8 +1,8 @@
 <?php
 require_once "lib/IDBObject.interface.php";
-require_once "lib/Object.class.php";
+require_once "lib/DBL.class.php";
 
-class Player extends Object implements IDBObject
+class Player implements IDBObject
 {
 	private $name;
 	private $artifacts;
@@ -22,19 +22,34 @@ class Player extends Object implements IDBObject
 		$this->name = $val;
 	}
 	
-	public function insert()
+	public function dbInsert()
 	{
 		
 	}
 	
-	public function update()
+	public function dbUpdate()
 	{
 		
 	}
 	
-	public function delete()
+	public function dbDelete()
 	{
 		
+	}
+	
+	public function dbGet($conditions=NULL)
+	{
+		$dbh = new DBL;
+		
+		$result = $dbh->get("player", $conditions);
+		
+		while($record = $result->fetch_array()){
+			$buffer[] = new User($record);
+		}
+		
+		$result->free();
+		
+		return $buffer;
 	}
 }
 
