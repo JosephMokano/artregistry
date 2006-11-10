@@ -93,23 +93,29 @@ $resource_types = $dblink->query("SELECT * FROM resource");
 
 ?>
 
-<span id="wndAddArtefact" class="dialogBox" style="display: none; position: absolute; width: 400; top: 300; left: 100;">
+<span id="wndAddArtefact" class="dialogBox" style="display: none; position: absolute; width: 400; height: 500; top: 100; left: 100;">
 	<form name="frmAddArtefact" method="POST" action="add_artefact.php">
-	<?php while($t = $resource_types->fetch_array()){?>
-	<table border="1">
-		<tr><td colspan="6"><?php echo $t["resource_name"]; ?></td></tr>
-		<?php while($r = $artefact_types->fetch_array()){?>
+	<table width="100%" border="0" cellpadding="8" cellspacing="1" bgcolor="#C0C0C0">
 		<tr>
-			<td><?php echo $r["artefact_type_name"] ?></td>
+		<?php while($t = $resource_types->fetch_array()){?>
+			<th nowrap><?php echo $t["resource_name"]; ?></th>
+		<?php } $resource_types->data_seek(0); ?>
+		</tr>
+	</table>
+	<?php while($t = $resource_types->fetch_array()){?>
+	<table id="res<?php echo $t["resource_id"]; ?>" width="100%" border="0" cellpadding="8" cellspacing="1" bgcolor="#C0C0C0" class="outline" style="display: none;">
+		<?php for($r=0; $r<7; $r++){?>
+		<tr>
+			<td class="gen" nowrap><?php $r1 = $artefact_types->fetch_array(); echo $r1["artefact_type_name"] ?></td>
 			<?php while($c = $artefact_sizes->fetch_array()){ ?>
-			<td class="gen">
+			<td class="gen" align="center">
 				<?php
 				$row = $result->fetch_array();
 				echo $row["artefact_bonus"];
 				?>
 				<input type="radio" name="artefact">
 			</td>
-			<?php } ?>
+			<?php } $artefact_sizes->data_seek(0); ?>
 		</tr>
 		<?php } ?>
 	</table>
