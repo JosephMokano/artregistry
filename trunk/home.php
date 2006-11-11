@@ -52,13 +52,40 @@ $result = $dblink->query($strSQL);
 </head>
 <script language="javascript">
 
+function init()
+{
+	var x = document.all;
+	
+	var buffer
+	for(item in x)
+	{
+		buffer = "id: "+item.id+"; name: "+item.name;
+	}
+	
+	myScreen.innerText = buffer;
+}
+
 function addArtefact()
 {
+	for(item in resourceTable)
+	{
+		item.style.display = 'none';
+	}
+	frmAddArtefact.reset();
+	rt1.style.display = '';
 	wndAddArtefact.style.display = '';
 }
 
+function switchResourceTab(resId)
+{
+	eval('res'+resId+'.style.display = ""');
+}
+
 </script>
-<body>
+<body onLoad="init()">
+<div id="myScreen">
+</div>
+
 
 <a href="javascript:addArtefact()">Добавить</a>
 <table width="100%" border="0" cellpadding="8" cellspacing="1" bgcolor="#C0C0C0" class="outline">
@@ -93,17 +120,17 @@ $resource_types = $dblink->query("SELECT * FROM resource");
 
 ?>
 
-<span id="wndAddArtefact" class="dialogBox" style="display: none; position: absolute; width: 400; height: 500; top: 100; left: 100;">
+<span id="wndAddArtefact" style="display: none; position: absolute; width: 400; height: 500; top: 100; left: 100;">
 	<form name="frmAddArtefact" method="POST" action="add_artefact.php">
-	<table width="100%" border="0" cellpadding="8" cellspacing="1" bgcolor="#C0C0C0">
+	<table width="100%" border="0" cellpadding="8" cellspacing="1" bgcolor="#C0C0C0" style="filter:progid:DXImageTransform.Microsoft.Shadow(color=#707070, direction=90, strength=3)">
 		<tr>
 		<?php while($t = $resource_types->fetch_array()){?>
-			<th nowrap><?php echo $t["resource_name"]; ?></th>
+			<th nowrap><a href="javascript: switchResourceTab(<?php echo $t["resource_id"]; ?>)"><?php echo $t["resource_name"]; ?></a></th>
 		<?php } $resource_types->data_seek(0); ?>
 		</tr>
 	</table>
 	<?php while($t = $resource_types->fetch_array()){?>
-	<table id="res<?php echo $t["resource_id"]; ?>" width="100%" border="0" cellpadding="8" cellspacing="1" bgcolor="#C0C0C0" class="outline" style="display: none;">
+	<table name="resTable" id="rt<?php echo $t["resource_id"]; ?>" width="100%" border="0" cellpadding="8" cellspacing="1" bgcolor="#C0C0C0" class="outline" style="position: absolute; display: none;filter:progid:DXImageTransform.Microsoft.Shadow(color=#707070, direction=135, strength=5);">
 		<?php for($r=0; $r<7; $r++){?>
 		<tr>
 			<td class="gen" nowrap><?php $r1 = $artefact_types->fetch_array(); echo $r1["artefact_type_name"] ?></td>
