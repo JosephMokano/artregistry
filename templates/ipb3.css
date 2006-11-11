@@ -1,0 +1,278 @@
+/* CS1 Background and text colours
+-------------------------------------------------------------*/
+
+html, body {	background-color: #fff;
+}
+
+#pun-title TABLE {
+	background: url(../../img/Mybb_Invision/header.gif) #fff repeat-x;
+}
+
+#pun-title h1 {
+	background: url(../../img/Mybb_Invision/logo.gif) no-repeat;
+}
+
+#pun {
+	background-color : #fff;
+}
+
+/* CS1.1 */
+.punbb .main .container,
+.punbb .section .container,
+.punbb .section .formal .container,
+.punbb .formal fieldset,
+#viewprofile li strong, #viewprofile li div,
+#setmods dd,
+.punbb-admin #pun-admain .adcontainer,
+.punbb .info-box, .punbb #pun-main .info-box .legend {
+  background-color: #e4eaf2;
+  color: #333;
+  }
+
+/* CS1.2 */
+.punbb .post-body,
+.post-box,
+.punbb .post-links,
+.punbb .post h3,
+.punbb .post .container {  background-color: #eef2f7;
+  color: #333;
+}
+
+.punbb .altstyle .post-body,
+.altstyle .post-box,
+.punbb .altstyle .post-links,
+.punbb .altstyle h3,
+.punbb .altstyle .container {
+  background-color: #f5f9fd;
+  color: #333;
+}
+
+.punbb .post h3 span {  background-color: #e4eaf2;
+  color: #333;
+}
+
+.punbb .altstyle h3 span {
+  background-color: #eef2f7;
+  color: #333;
+}
+
+.punbb td.tc2, .punbb td.tc3, .punbb td.tcr {
+  background-color: #dfe6ef;
+  color: #333;
+  }
+
+/* CS1.3 */
+#pun-stats h2, .punbb .main h1, .punbb .main h2, #pun-debug h2, .punbb-admin #pun-admain h2 {
+  background: url(../../img/Mybb_Invision/h2.gif) #fff repeat-x;
+  color: #fff;
+  }
+
+/* CS1.4 */
+.punbb .modmenu .container {
+  background-color: #dfe6ef;
+  color: #333;
+  }
+
+/* CS1.5 */
+.punbb legend span, #viewprofile h2 span, #profilenav h2 span, .punbb-admin #pun-admain legend span {  background-color: #e4eaf2;
+  color: #333;
+  }
+
+/* CS1.6 */
+#viewprofile li, #setmods dl  {
+  background: url(../../img/Mybb_Invision/h2.gif) #fff repeat-x;
+  color: #333;
+  }
+
+.punbb .post h3 strong {
+	font-size: 0.9em;
+	color: #333;
+	text-decoration: underline
+}
+
+/* CS1.7 */
+.punbb .quote-box, .punbb .code-box {
+  background-color: #fafcfe;
+  color: #333
+  }
+
+/* CS1.8 */
+#pun-navlinks .container {	background: url(../../img/Mybb_Invision/menu.gif) #fff repeat-x;
+	color: #333;
+  }
+
+#pun-ulinks .container {
+	background-color: #f4e7ea;
+}
+
+.offline li.pa-online strong {
+  font-weight: normal;
+  }
+
+.punbb th {	color: #3A4F6C;	background: url(../../img/Mybb_Invision/sub.gif) #fff repeat-x;
+}
+
+/* CS2 Border colours
+-------------------------------------------------------------*/
+
+#pun-title, #pun-navlinks {	border-color: #5176b5;}
+
+#pun-ulinks .container {	border-color: #986265;
+}
+
+.punbb .post .container {
+  border-top-color: #fff;
+}
+
+/* CS2.1 */
+.punbb .container, .punbb .post-body, .post h3 {
+  border-color: #5176b5 #5176b5 #5176b5 #5176b5
+  }
+
+/* CS2.2 */
+.punbb .section, .punbb .forum, .punbb .formal, .punbb .modmenu, .punbb .info,
+.punbb .category, .punbb .post {
+  border-color: #efefef;
+  }
+
+.punbb .post h3,
+.punbb .post h3 span {
+  border-bottom: 1px solid #fff;
+}
+
+/* CS2.3 */
+#pun-stats h2, .punbb .main h1, .punbb .main h2, #pun-debug h2, .punbb-admin #pun-admain h2 {
+  border-color: #5176b5;
+  }
+
+/* CS2.4 */
+.punbb fieldset {  border-color: #ccc;
+  }
+
+.punbb td, #viewprofile ul, #profilenav ul, .punbb .post .post-body,
+.punbb .post h3 span, .post-links ul, .post-links, .usertable table {
+  border-color: #fff;
+  }
+
+/* CS2.5 */
+.punbb th {
+  border-color: #5176b5;
+  }
+
+/* CS2.6 */
+.punbb .quote-box, .punbb .code-box {
+  border-color: #ccc #fff #fff #ccc;
+  }
+
+#pun-ulinks li, #pun-announcement h2 span, li#onlinelist, #pun-help .formal .info-box h3.legend span {
+  border-color: #ccc
+  }
+
+#pun-ulinks li a, #pun-announcement h2, li#onlinelist div, #pun-help .formal .info-box h3.legend {
+  border-color: #fff
+  }
+
+.punbb .divider {
+  border-color: #ccc #fff #fff #fff;
+  }
+
+#pun-break4 {
+  border-color: #ccc #fff #fff #fff;
+  }
+
+.punbb .formal fieldset .post-box, .punbb .info-box {
+  border: 1px solid #5176b5;
+  }
+
+li.pa-online {
+  border-left-color: #5176b5;
+  }
+
+
+/* CS3 Links
+-------------------------------------------------------------*/
+
+/* CS3.1 */
+.punbb a, .punbb a:link, .punbb a:visited,
+.punbb-admin #pun-admain a, .punbb-admin #pun-admain a:link, .punbb-admin #punbb-admain a:visited {
+  color: #333;
+  }
+
+.punbb li.isactive a, .punbb li.isactive a:link, .punbb li.isactive a:visited {
+  color: #333;
+  }
+
+/* CS3.2 */
+.punbb a:hover, .punbb a:focus, .punbb a:active,  .punbb-admin #pun-admain .nodefault,
+.punbb-admin #punbb-admain a:hover, .punbb-admin #punbb-admain a:focus, .punbb-admin #punbb-admain a:active {
+  color: #34498B;
+  }
+
+/* CS3.3 */
+#pun-navlinks a {
+  color: #3A4F6C;
+  text-decoration: none
+  }
+
+/* CS3.4 */
+#pun-navlinks a:hover, #pun-navlinks a:focus, #pun-navlinks a:active {
+  color: #5176B5;
+  text-decoration: underline
+  }
+
+#pun-pagelinks a:active, #pun-pagelinks a:focus {
+  background-color: #333;
+  color: #fff;
+  }
+
+.post h3 span a:link, .post h3 span a:visited {	font-weight: normal;	font-size: 0.9em;
+	text-decoration: none;
+	/*color: #808080;*/
+}
+
+/* CS4 Post status icons
+ -------------------------------------------------------------*/
+
+div.icon {	background: url(../../img/Mybb_Invision/old.gif) no-repeat;
+}
+
+tr.inew div.icon {	background: url(../../img/Mybb_Invision/new.gif) no-repeat;
+}
+
+tr.iclosed div.icon {	background: url(../../img/Mybb_Invision/lock.gif) no-repeat;
+}
+
+tr.iredirect div.icon {	background: url(../../img/Mybb_Invision/link.gif) no-repeat;
+
+}
+
+tr.isticky div.icon {	background: url(../../img/Mybb_Invision/sticky.gif) no-repeat;
+}
+
+.punbb .main h1 span, .punbb .main h2 span, #pun-stats h2 span {
+	background: transparent url(../../img/Mybb_Invision/arrow.gif) no-repeat 0% 3px;
+	padding-left: 16px;
+}
+
+#profilenav h2 span {background-image: none}
+
+td.tcr a{
+	background: transparent url(../../img/Mybb_Invision/post.gif) no-repeat 0% 3px;
+	padding-left: 12px;
+}
+
+#pun-stats ul.container {
+	background: transparent url(../../img/Mybb_Invision/stats.gif) no-repeat 10px 26px;
+	padding-left: 51px;
+}
+
+#pun-stats div.statscon {
+	background-color: #e4eaf2;
+}
+
+#pun-crumbs2 .container,
+#pun-about .container {
+	background-color: #d0dae7;
+}
+
+#pun-main div.catleft, #pun-main div.catright {display: none}
