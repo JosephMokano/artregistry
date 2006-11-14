@@ -54,22 +54,18 @@ $result = $dblink->query($strSQL);
 
 function init()
 {
-	var x = document.all;
-	
-	var buffer
-	for(item in x)
-	{
-		buffer = "id: "+item.id+"; name: "+item.name;
-	}
-	
-	myScreen.innerText = buffer;
+
 }
 
 function addArtefact()
 {
-	for(item in resourceTable)
+	var x = document.getElementsByTagName("table");
+	for(i=0; i<x.length; i++)
 	{
-		item.style.display = 'none';
+		if(x[i].name == "resTable")
+		{
+			x[i].style.display = 'none';
+		}
 	}
 	frmAddArtefact.reset();
 	rt1.style.display = '';
@@ -78,7 +74,15 @@ function addArtefact()
 
 function switchResourceTab(resId)
 {
-	eval('res'+resId+'.style.display = ""');
+	var x = document.getElementsByTagName("table");
+	for(i=0; i<x.length; i++)
+	{
+		if(x[i].name == "resTable")
+		{
+			x[i].style.display = 'none';
+		}
+	}
+	eval('rt'+resId+'.style.display = ""');
 }
 
 </script>
@@ -120,8 +124,8 @@ $resource_types = $dblink->query("SELECT * FROM resource");
 
 ?>
 
-<span id="wndAddArtefact" style="display: none; position: absolute; width: 400; height: 500; top: 100; left: 100;">
-	<form name="frmAddArtefact" method="POST" action="add_artefact.php">
+<form name="frmAddArtefact" method="POST" action="add_artefact.php">
+<span align="right" id="wndAddArtefact" style="display: none; position: absolute; width: 400; height: 400; top: 100; left: 100;">
 	<table width="100%" border="0" cellpadding="8" cellspacing="1" bgcolor="#C0C0C0" style="filter:progid:DXImageTransform.Microsoft.Shadow(color=#707070, direction=90, strength=3)">
 		<tr>
 		<?php while($t = $resource_types->fetch_array()){?>
@@ -130,7 +134,7 @@ $resource_types = $dblink->query("SELECT * FROM resource");
 		</tr>
 	</table>
 	<?php while($t = $resource_types->fetch_array()){?>
-	<table name="resTable" id="rt<?php echo $t["resource_id"]; ?>" width="100%" border="0" cellpadding="8" cellspacing="1" bgcolor="#C0C0C0" class="outline" style="position: absolute; display: none;filter:progid:DXImageTransform.Microsoft.Shadow(color=#707070, direction=135, strength=5);">
+	<table name="resTable" id="rt<?php echo $t["resource_id"]; ?>" width="100%" border="0" cellpadding="8" cellspacing="1" bgcolor="#C0C0C0" class="outline" style="display: none;filter:progid:DXImageTransform.Microsoft.Shadow(color=#707070, direction=135, strength=5);">
 		<?php for($r=0; $r<7; $r++){?>
 		<tr>
 			<td class="gen" nowrap><?php $r1 = $artefact_types->fetch_array(); echo $r1["artefact_type_name"] ?></td>
@@ -147,8 +151,10 @@ $resource_types = $dblink->query("SELECT * FROM resource");
 		<?php } ?>
 	</table>
 	<?php } ?>
-	</form>
+		    	<input type="submit" name="btnSubmit" value="Добавить">
+	    	<input type="button" name="btnCancel" onClick="wndAddArtefact.style.display='none'" value="Отменить">
 </span>
+</form>
 
 </body>
 </html>
