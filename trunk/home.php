@@ -15,8 +15,14 @@ $dblink->query("SET NAMES UTF8");
 
 $strSQL = "SELECT * FROM race";
 
-$resRace = $dblink->query($strSQL);
+$rsRace = $dblink->query($strSQL);
 
+$strSQL = "SELECT resource.resource_name, ROUND(SUM(artefact.artefact_bonus), 3) AS aa_bonus, COUNT(player_artefact.artefact_id) AS aa_count
+			FROM artefact, player_artefact, resource
+			WHERE player_artefact.artefact_id = artefact.artefact_id AND resource.resource_id=artefact.resource_id
+			GROUP BY resource.resource_name";
+
+$rsAllianceBonus = $dblink->query($strSQL);
 ?>
 <html>
 <head>
@@ -39,40 +45,15 @@ $resRace = $dblink->query($strSQL);
 		<th width="20%">3 месяца назад</th>
 		<th width="20%">пол года назад</th>
 	</tr>
+	<?php while($row = $rsAllianceBonus->fetch_array()){ ?>
 	<tr>
-		<td class="gen">кадериум</td>
-		<td class="gen"> </td>
-		<td class="gen"> </td>
-		<td class="gen"> </td>
-		<td class="gen"> </td>
+		<td class="gen"><?php echo $row["resource_name"]; ?></td>
+		<td class="gen" align="center"><?php echo rtrim($row["aa_bonus"], "0") . "% (" . $row["aa_count"] . " шт)"; ?>&nbsp;</td>
+		<td class="gen" align="center">&nbsp;</td>
+		<td class="gen" align="center">&nbsp;</td>
+		<td class="gen" align="center">&nbsp;</td>
 	</tr>
-	<tr>
-		<td class="gen">нано-кристаллы</td>
-		<td class="gen"> </td>
-		<td class="gen"> </td>
-		<td class="gen"> </td>
-		<td class="gen"> </td>
-	</tr>
-	<tr>
-		<td class="gen">продиум</td>
-		<td class="gen"> </td>
-		<td class="gen"> </td>
-		<td class="gen"> </td>
-		<td class="gen"> </td>
-	</tr>
-	<tr>
-		<td class="gen">еда</td>
-		<td class="gen"> </td>
-		<td class="gen"> </td>
-		<td class="gen"> </td>
-		<td class="gen"> </td>
-	</tr>
-	<tr>
-		<td class="gen">энергия</td>
-		<td class="gen"> </td>
-		<td class="gen"> </td>
-		<td class="gen"> </td>
-	</tr>
+	<?php } ?>
 </table>
 
 &nbsp;
@@ -82,7 +63,7 @@ $resRace = $dblink->query($strSQL);
 		<th width="33%">кол-во членов ала</th>
 		<th width="33%">держат АА</th>
 	</tr>
-	<?php while($row = $resRace->fetch_array()){ ?>
+	<?php while($row = $rsRace->fetch_array()){ ?>
 	<tr>
 		<td class="gen"><?php echo $row["race_name"]; ?></td>
 		<td class="gen"> </td>
