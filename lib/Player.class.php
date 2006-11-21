@@ -1,25 +1,64 @@
 <?php
 require_once "lib/IDBObject.interface.php";
-require_once "lib/DBL.class.php";
+//require_once "lib/DBL.class.php";
+require_once "lib/Alliance.class.php";
+require_once "lib/IDBObject.interface.php";
 
 class Player implements IDBObject
 {
+	private $id;
 	private $name;
+	private $alliance;
+	private $race;
 	private $artifacts;
 	
-	public function __construct($name=NULL)
+	public function __construct($id=NULL, $name=NULL, $alliance_id=NULL, $race=NULL)
 	{
+		$this->id = $id;
 		$this->name = $name;
+		$this->alliance = Alliance::dbGet($alliance_id);
+		$this->race = $race;
+		$this->artefacts = Artefact::dbGet($this->$id);
+	}
+	
+	public function getId()
+	{
+		return $this->id;
+	}
+	
+	public function setId($val)
+	{
+		$this->id = $val;
 	}
 	
 	public function getName()
 	{
-		
+		return $this->name;
 	}
 	
 	public function setName($val)
 	{
 		$this->name = $val;
+	}
+	
+	public function getAlliance()
+	{
+		return $this->alliance;
+	}
+	
+	public function setAlliance(Alliance $val)
+	{
+		$this->alliance = $val;
+	}
+	
+	public function getRace()
+	{
+		return $this->race;
+	}
+	
+	public function setRace($val)
+	{
+		$this->race = $val;
 	}
 	
 	public function dbInsert()
