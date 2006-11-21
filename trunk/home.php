@@ -7,15 +7,11 @@ require_once "lib/Player.class.php";
 	if(!isset($_SESSION["player"])){
 		header("Location: index.html");
 	}
-	$PLAYER = $_SESSION["player"];
+	$player = unserialize($_SESSION["player"]);
 }
 
 $dblink = new mysqli('localhost', 'root', 'lazgi2006', 'artregistry');
 $dblink->query("SET NAMES UTF8");
-
-$strSQL = "SELECT * FROM race";
-
-$rsRace = $dblink->query($strSQL);
 
 $strSQL = "SELECT resource.resource_name, tbl1.*, tbl2.aa_bonus_1m, tbl2.aa_count_1m,
 tbl3.aa_bonus_3m, tbl3.aa_count_3m, tbl4.aa_bonus_6m, tbl4.aa_count_6m FROM
@@ -161,7 +157,7 @@ function switchResourceTab(resId)
 -->
 
 <br>
-Мои Альянсовые Артефакты
+Мои Артефакты
 <table width="100%" border="0" cellpadding="8" cellspacing="1" bgcolor="#C0C0C0" class="outline">
 	<tr>
 		<th width="5%">№</th>

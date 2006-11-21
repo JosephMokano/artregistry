@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 -- 
 -- Host: localhost:3306
--- Generation Time: Nov 14, 2006 at 05:40 PM
+-- Generation Time: Nov 20, 2006 at 10:42 AM
 -- Server version: 5.0.27
 -- PHP Version: 5.1.6
 -- 
@@ -370,22 +370,24 @@ INSERT INTO `player` VALUES (1, 'KIAKSAR', 1, '332fe111473b2f2a425117be98c60130'
 -- 
 
 CREATE TABLE `player_artefact` (
+  `player_artefact_id` int(11) NOT NULL auto_increment,
   `player_id` int(11) NOT NULL,
   `artefact_id` int(11) NOT NULL,
-  `player_artefact_date` int(11) NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+  `player_artefact_date` int(11) NOT NULL,
+  PRIMARY KEY  (`player_artefact_id`)
+) ENGINE=MyISAM AUTO_INCREMENT=8 DEFAULT CHARSET=utf8 AUTO_INCREMENT=8 ;
 
 -- 
 -- Dumping data for table `player_artefact`
 -- 
 
-INSERT INTO `player_artefact` VALUES (1, 5, 1155329526);
-INSERT INTO `player_artefact` VALUES (1, 20, 1155329526);
-INSERT INTO `player_artefact` VALUES (1, 45, 1160081587);
-INSERT INTO `player_artefact` VALUES (1, 80, 1160081587);
-INSERT INTO `player_artefact` VALUES (1, 97, 1160081587);
-INSERT INTO `player_artefact` VALUES (1, 54, 1163537638);
-INSERT INTO `player_artefact` VALUES (1, 5, 1163537638);
+INSERT INTO `player_artefact` VALUES (1, 1, 5, 1155329526);
+INSERT INTO `player_artefact` VALUES (2, 1, 20, 1155329526);
+INSERT INTO `player_artefact` VALUES (3, 1, 45, 1160081587);
+INSERT INTO `player_artefact` VALUES (4, 1, 80, 1160081587);
+INSERT INTO `player_artefact` VALUES (5, 1, 97, 1160081587);
+INSERT INTO `player_artefact` VALUES (6, 1, 54, 1163537638);
+INSERT INTO `player_artefact` VALUES (7, 1, 5, 1163537638);
 
 -- --------------------------------------------------------
 
