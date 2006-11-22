@@ -1,8 +1,8 @@
 <?php
-require_once "lib/IDBObject.interface.php";
-//require_once "lib/DBL.class.php";
-require_once "lib/Alliance.class.php";
-require_once "lib/IDBObject.interface.php";
+require_once "IDBObject.interface.php";
+require_once "DBL.class.php";
+require_once "Artefact.class.php";
+require_once "Alliance.class.php";
 
 class Player implements IDBObject
 {

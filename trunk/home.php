@@ -10,6 +10,12 @@ require_once "lib/Player.class.php";
 	$player = unserialize($_SESSION["player"]);
 }
 
+echo $player->getId()." <br>";
+echo $player->getName()." <br>";
+echo $player->getAlliance()." <br>";
+echo $player->getRace()." <br>";
+
+
 $dblink = new mysqli('localhost', 'root', 'lazgi2006', 'artregistry');
 $dblink->query("SET NAMES UTF8");
 
@@ -138,24 +144,6 @@ function switchResourceTab(resId)
 	<?php } ?>
 </table>
 
-&nbsp;
-<!--
-<table width="100%" border="0" cellpadding="8" cellspacing="1" bgcolor="#C0C0C0" class="outline">
-	<tr>
-		<th width="33%"> </th>
-		<th width="33%">кол-во членов ала</th>
-		<th width="33%">держат АА</th>
-	</tr>
-	<?php while($row = $rsRace->fetch_array()){ ?>
-	<tr>
-		<td class="gen"><?php echo $row["race_name"]; ?></td>
-		<td class="gen"> </td>
-		<td class="gen"> </td>
-	</tr>
-	<?php } ?>
-</table>
--->
-
 <br>
 Мои Артефакты
 <table width="100%" border="0" cellpadding="8" cellspacing="1" bgcolor="#C0C0C0" class="outline">
@@ -217,8 +205,8 @@ $resource_types = $dblink->query("SELECT * FROM resource");
 		<?php } ?>
 	</table>
 	<?php } ?>
-		    	<input type="submit" name="btnSubmit" value="Добавить">
-	    	<input type="button" name="btnCancel" onClick="wndAddArtefact.style.display='none'" value="Отменить">
+	<input type="submit" name="btnSubmit" value="Добавить">
+	<input type="button" name="btnCancel" onClick="wndAddArtefact.style.display='none'" value="Отменить">
 </span>
 </form>
 

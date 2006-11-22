@@ -1,4 +1,4 @@
-<?
+<?php
 require_once "IDBObject.interface.php";
 
 class Alliance implements IDBObject
@@ -55,6 +55,7 @@ class Alliance implements IDBObject
 	
 	public function dbInsert()
 	{
+		
 	}
 	
 	public function dbUpdate()
@@ -67,7 +68,24 @@ class Alliance implements IDBObject
 	
 	public static function dbGet($id=NULL)
 	{
+		//$dbh = new DBL;
+		$strSQL = "SELECT * FROM alliance WHERE alliance.alliance_id=".$id;
 		
+		$result = mysqli_query($strSQL);
+		
+		while($record = $result->fetch_array()){
+			$newAlliance = new Alliance();
+			
+			$newAlliance->setName($record["alliance_name"]);
+			$newAlliance->setCode($record["alliance_code"]);
+			$newAlliance->setDescription($record["alliance_description"])
+			
+			$buffer[] = $newAlliance;
+		}
+		
+		$result->free();
+		
+		return $buffer;
 	}
 }
 
