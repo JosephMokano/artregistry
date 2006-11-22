@@ -44,6 +44,11 @@ class DBL
 		return $this->dbh;
 	}
 	
+	public function query($strSQL)
+	{
+		return $this->dbh->query($strSQL);
+	}
+	
 	function get($table_name, $table_conditions=NULL, $table_sorting=NULL, $table_fields=NULL, $row_start=NULL, $row_count=NULL)
 	{
 		if(!$table_fields){
