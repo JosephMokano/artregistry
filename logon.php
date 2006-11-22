@@ -1,8 +1,6 @@
 <?php
 require_once "lib/Player.class.php";
 
-//$player = Player::dbGet("player_name='".$_POST["logon"]["name"]."' AND player_password='".md5($_POST["logon"]["password"])."'");
-
 $dblink = new mysqli('localhost', 'root', 'lazgi2006', 'artregistry');
 $dblink->query("SET NAMES UTF8");
 
@@ -21,7 +19,7 @@ if($player = $result->fetch_array()){
 	if(isset($_SESSION["player"])){
 		unset($_SESSION["player"]);
 	}
-	$_SESSION["player"] = $player;
+	$_SESSION["player"] = serialize($player);
 	
 	header("Location: home.php");
 }

@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 -- 
 -- Host: localhost:3306
--- Generation Time: Nov 20, 2006 at 10:42 AM
+-- Generation Time: Nov 21, 2006 at 05:35 PM
 -- Server version: 5.0.27
 -- PHP Version: 5.1.6
 -- 
@@ -348,9 +348,9 @@ INSERT INTO `artefact_type` VALUES (35, 'экологии', 5);
 
 CREATE TABLE `player` (
   `player_id` int(11) NOT NULL auto_increment,
-  `player_name` varchar(50) NOT NULL,
+  `player_name` varchar(50) character set utf8 collate utf8_bin NOT NULL,
   `alliance_id` int(11) NOT NULL,
-  `player_password` varchar(255) NOT NULL,
+  `player_password` varchar(255) character set utf8 collate utf8_bin NOT NULL,
   `race_id` int(11) NOT NULL,
   PRIMARY KEY  (`player_id`),
   KEY `alliance_id` (`alliance_id`),
@@ -361,7 +361,7 @@ CREATE TABLE `player` (
 -- Dumping data for table `player`
 -- 
 
-INSERT INTO `player` VALUES (1, 'KIAKSAR', 1, '332fe111473b2f2a425117be98c60130', 1);
+INSERT INTO `player` VALUES (1, 0x4b49414b534152, 1, 0x3333326665313131343733623266326134323531313762653938633630313330, 1);
 
 -- --------------------------------------------------------
 
