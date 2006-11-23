@@ -58,14 +58,17 @@ class Artefact implements IDBObject
 	
 	public function dbInsert()
 	{
+		
 	}
 	
 	public function dbUpdate()
 	{
+		
 	}
 	
 	public function dbDelete()
 	{
+		
 	}
 	
 	public static function dbGet($player_id)

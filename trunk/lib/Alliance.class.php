@@ -87,6 +87,11 @@ class Alliance implements IDBObject
 		
 		$result->free();
 		
+		if(isset($id))
+		{
+			return $buffer[0];
+		}
+		
 		return $buffer;
 	}
 }

@@ -1,11 +1,15 @@
 <?php
+require_once "lib/DBL.class.php";
 
 {
 	session_start();
 	if(!isset($_SESSION["player"])){
 		header("Location: index.html");
 	}
-	$PLAYER = $_SESSION["player"];
+	$player = unserialize($_SESSION["player"]);
 }
+
+$dblink = new DBL();
+
 
 ?>

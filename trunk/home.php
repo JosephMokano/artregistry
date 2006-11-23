@@ -1,6 +1,7 @@
 <?php
-require_once "lib/Artefact.class.php";
-require_once "lib/Player.class.php";
+//require_once "lib/Artefact.class.php";
+//require_once "lib/Player.class.php";
+require_once "lib/DBL.class.php";
 
 {
 	session_start();
@@ -10,14 +11,7 @@ require_once "lib/Player.class.php";
 	$player = unserialize($_SESSION["player"]);
 }
 
-echo $player->getId()." <br>";
-echo $player->getName()." <br>";
-echo $player->getAlliance()." <br>";
-echo $player->getRace()." <br>";
-
-
-$dblink = new mysqli('localhost', 'root', 'lazgi2006', 'artregistry');
-$dblink->query("SET NAMES UTF8");
+$dblink = new DBL();
 
 $strSQL = "SELECT resource.resource_name, tbl1.*, tbl2.aa_bonus_1m, tbl2.aa_count_1m,
 tbl3.aa_bonus_3m, tbl3.aa_count_3m, tbl4.aa_bonus_6m, tbl4.aa_count_6m FROM
