@@ -1,8 +1,7 @@
 <?php
 require_once "lib/Player.class.php";
 
-$dblink = new mysqli('localhost', 'root', 'lazgi2006', 'artregistry');
-$dblink->query("SET NAMES UTF8");
+$dblink = new DBL();
 
 $strSQL = "SELECT player.*, race.race_name FROM player, race
 			WHERE player.race_id = race.race_id

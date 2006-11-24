@@ -90,6 +90,18 @@ class Player implements IDBObject
 		
 		return $buffer;
 	}
+	
+	public function dbAddArtefact($artefact_id)
+	{
+		$dbh = new DBL;
+		
+		$strSQL = "INSERT INTO player_artefact (player_id, artefact_id, player_artefact_date) VALUES (" .
+					$this->getId() . ", " . $artefact_id . ", " . time() . ")";
+		
+		$dbh->query($strSQL);
+		
+		return true;
+	}
 }
 
 ?>

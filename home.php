@@ -192,7 +192,7 @@ $resource_types = $dblink->query("SELECT * FROM resource");
 				$row = $result->fetch_array();
 				echo $row["artefact_bonus"];
 				?>
-				<input type="radio" name="artefact">
+				<input type="radio" name="artefact" value="<?php echo $row["artefact_id"]; ?>">
 			</td>
 			<?php } $artefact_sizes->data_seek(0); ?>
 		</tr>

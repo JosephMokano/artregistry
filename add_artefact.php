@@ -1,5 +1,4 @@
 <?php
-require_once "lib/DBL.class.php";
 
 {
 	session_start();
@@ -9,7 +8,8 @@ require_once "lib/DBL.class.php";
 	$player = unserialize($_SESSION["player"]);
 }
 
-$dblink = new DBL();
+$player->dbAddArtefact($_POST["artefact"]);
 
+header("Location: index.html");
 
 ?>
