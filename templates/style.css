@@ -14,6 +14,10 @@ body {
 font,th,td,p { font-family: Verdana, Arial, Helvetica, sans-serif }
 a:link,a:active,a:visited { color : #006699; }
 a:hover		{ text-decoration: underline; color : #DD6900; }
+
+a.tab:link,a.tab:active,a.tab:visited { color : #FFFFFF; text-decoration: none; }
+a.tab:hover		{ text-decoration: underline; color : #DD6900; }
+
 hr	{ height: 0px; border: solid #D1D7DC 0px; border-top-width: 1px;}
 
 /* The largest text used in the index page title and toptic title etc. */
