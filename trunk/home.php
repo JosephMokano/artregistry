@@ -11,9 +11,29 @@ require_once "lib/DBL.class.php";
 	$player = unserialize($_SESSION["player"]);
 }
 
+function mergeImages($img1, $img2)
+{
+	$imgDir = "img/";
+	
+	$newImg = $imgDir. substr($img1,0, strlen($img1)-4) . "_" . substr($img2,0, strlen($img2)-4) . ".gif";
+	
+	list($img1width, $img1height) = getimagesize($imgDir . $img1); // Size of source photo for resizing
+	list($img2width, $img2height) = getimagesize($imgDir . $img2); // Size of source photo for resizing
+
+	$imgFile1 = imagecreatefromgif($imgDir . $img1);
+	$imgFile2 = imagecreatefromgif($imgDir . $img2);
+
+	imagecopymerge( $imgFile1, $imgFile2, 5, 5, 0, 0, $img2width, $img2height, 100);
+
+	imagegif( $imgFile1, $newImg ) or die ( 'Could not save picture! Please check permissions.' );
+
+	imagedestroy($imgFile1);
+	imagedestroy($imgFile2);
+}
+
 $dblink = new DBL();
 
-$strSQL = "SELECT resource.resource_name, tbl1.*, tbl2.aa_bonus_1m, tbl2.aa_count_1m,
+$strSQL = "SELECT resource.resource_name, resource.resource_img, tbl1.*, tbl2.aa_bonus_1m, tbl2.aa_count_1m,
 tbl3.aa_bonus_3m, tbl3.aa_count_3m, tbl4.aa_bonus_6m, tbl4.aa_count_6m FROM
 (SELECT artefact.resource_id, ROUND(SUM(artefact.artefact_bonus), 3) AS aa_bonus,
 COUNT(player_artefact.artefact_id) AS aa_count
@@ -48,13 +68,15 @@ ORDER BY tbl1.resource_id";
 
 $rsAllianceBonus = $dblink->query($strSQL);
 
-$strSQL = "SELECT artefact.*, artefact_size.artefact_size_name, artefact_type.artefact_type_name, resource.resource_name
+$strSQL = "SELECT artefact.*, artefact_size.artefact_size_name, artefact_size.artefact_size_img,
+			artefact_type.artefact_type_name, artefact_type.artefact_type_img, resource.resource_name, resource.resource_img
 			FROM player_artefact, artefact, artefact_size, artefact_type, resource
 			WHERE player_artefact.artefact_id=artefact.artefact_id AND
 			artefact.artefact_size_id=artefact_size.artefact_size_id AND
 			artefact.artefact_type_id=artefact_type.artefact_type_id AND
 			artefact_type.resource_id=resource.resource_id AND
-			player_artefact.player_id=1";
+			player_artefact.player_id=1
+			ORDER BY artefact_type.resource_id, artefact.artefact_size_id DESC";
 
 $rsMyArtefacts = $dblink->query($strSQL);
 ?>
@@ -86,7 +108,8 @@ function addArtefact()
 	var x = document.getElementsByTagName("table");
 	for(i=0; i<x.length; i++)
 	{
-		if(x[i].name == "resTable")
+		//alert(x[i].name);
+		if(x[i].summary == "resTable")
 		{
 			x[i].style.display = 'none';
 		}
@@ -101,7 +124,7 @@ function switchResourceTab(resId)
 	var x = document.getElementsByTagName("table");
 	for(i=0; i<x.length; i++)
 	{
-		if(x[i].name == "resTable")
+		if(x[i].summary == "resTable")
 		{
 			x[i].style.display = 'none';
 		}
@@ -129,7 +152,7 @@ function switchResourceTab(resId)
 	</tr>
 	<?php while($row = $rsAllianceBonus->fetch_array()){ ?>
 	<tr>
-		<td class="gen"><?php echo $row["resource_name"]; ?></td>
+		<td class="gen"><img src="img/<?php echo $row["resource_img"]; ?>"><?php echo $row["resource_name"]; ?></td>
 		<td class="gen" align="center"><?php echo $row["aa_count"]? rtrim($row["aa_bonus"], "0") . "% (" . $row["aa_count"] . " шт)" : "0%"; ?>&nbsp;</td>
 		<td class="gen" align="center"><?php echo $row["aa_count_1m"]? rtrim($row["aa_bonus_1m"], "0") . "% (" . $row["aa_count_1m"] . " шт)" : "0%"; ?>&nbsp;</td>
 		<td class="gen" align="center"><?php echo $row["aa_count_3m"]? rtrim($row["aa_bonus_3m"], "0") . "% (" . $row["aa_count_3m"] . " шт)" : "0%"; ?>&nbsp;</td>
@@ -149,8 +172,17 @@ function switchResourceTab(resId)
 	<?php $i=1; while($row = $rsMyArtefacts->fetch_array()){ ?>
 	<tr>
 		<td class="gen"><?php echo $i++; ?></td>
-		<td class="gen"><?php echo $row["artefact_size_name"]." альянсовый артефакт ".$row["artefact_type_name"]; ?></td>
-		<td class="gen"><?php echo $row["resource_name"]." +".$row["artefact_bonus"]."%"; ?></td>
+		<td class="gen">
+			<?php
+			$imgFile = substr($row["artefact_size_img"],0, strlen($row["artefact_size_img"])-4) . "_" . substr($row["artefact_type_img"],0, strlen($row["artefact_type_img"])-4). ".gif";
+			if (!file_exists($imgFile)){ mergeImages($row["artefact_size_img"], $row["artefact_type_img"]); } ?>
+			<img src="img/<?php echo $imgFile; ?>">
+			<?php echo $row["artefact_size_name"]." альянсовый артефакт ".$row["artefact_type_name"]; ?>
+		</td>
+		<td class="gen">
+			<img src="img/<?php echo $row["resource_img"]; ?>">
+			<?php echo $row["resource_name"]." +".$row["artefact_bonus"]."%"; ?>
+		</td>
 	</tr>
 	<?php } ?>
 </table>
@@ -177,30 +209,49 @@ $resource_types = $dblink->query("SELECT * FROM resource");
 	<table width="100%" border="0" cellpadding="8" cellspacing="1" bgcolor="#C0C0C0" style="filter:progid:DXImageTransform.Microsoft.Shadow(color=#707070, direction=90, strength=3)">
 		<tr>
 		<?php while($t = $resource_types->fetch_array()){?>
-			<th nowrap><a href="javascript: switchResourceTab(<?php echo $t["resource_id"]; ?>)"><?php echo $t["resource_name"]; ?></a></th>
+			<th nowrap valign="middle"><a class="a.tab" href="javascript: switchResourceTab(<?php echo $t["resource_id"]; ?>)"><img src="img/<?php echo $t["resource_img"]; ?>"><?php echo $t["resource_name"]; ?></a></th>
 		<?php } $resource_types->data_seek(0); ?>
 		</tr>
 	</table>
 	<?php while($t = $resource_types->fetch_array()){?>
-	<table name="resTable" id="rt<?php echo $t["resource_id"]; ?>" width="100%" border="0" cellpadding="8" cellspacing="1" bgcolor="#C0C0C0" class="outline" style="display: none;filter:progid:DXImageTransform.Microsoft.Shadow(color=#707070, direction=135, strength=5);">
+	<table summary="resTable" id="rt<?php echo $t["resource_id"]; ?>" width="580" border="0" cellpadding="5" cellspacing="1" class="outline" style="display: none; background-color: #DFDFDF; filter:progid:DXImageTransform.Microsoft.Shadow(color=#707070, direction=135, strength=5);">
+		<tr>
+			<td bgcolor="#F5F5F5">&nbsp;</td>
+			<?php while($c = $artefact_sizes->fetch_array()){ ?>
+			<td class="gen"  align="center" bgcolor="#F5F5F5">
+			<img src="img/<?php echo $c["artefact_size_img"]; ?>"><br>
+			<?php echo $c["artefact_size_name"]; ?>
+			</td>
+			<?php } $artefact_sizes->data_seek(0); ?>
+		</tr>
 		<?php for($r=0; $r<7; $r++){?>
 		<tr>
-			<td class="gen" nowrap><?php $r1 = $artefact_types->fetch_array(); echo $r1["artefact_type_name"] ?></td>
+			<td class="gen" nowrap bgcolor="#F5F5F5" width="28%">
+			<?php $r1 = $artefact_types->fetch_array(); ?>
+			<img src="img/<?php echo $r1["artefact_type_img"]; ?>">
+			<?php echo $r1["artefact_type_name"] ?>
+			</td>
 			<?php while($c = $artefact_sizes->fetch_array()){ ?>
-			<td class="gen" align="center">
+			<td class="gen" align="center" bgcolor="#FFFFFF" width="12%">
 				<?php
 				$row = $result->fetch_array();
 				echo $row["artefact_bonus"];
 				?>
+				<br>
 				<input type="radio" name="artefact" value="<?php echo $row["artefact_id"]; ?>">
 			</td>
 			<?php } $artefact_sizes->data_seek(0); ?>
 		</tr>
 		<?php } ?>
+		<tr>
+			<td bgcolor="#F5F5F5">&nbsp</td>
+			<td colspan="6" align="right" bgcolor="#FFFFFF">
+				<input type="submit" name="btnSubmit" value="     ОК     ">
+				<input type="button" name="btnCancel" onClick="wndAddArtefact.style.display='none'" value="Отменить">
+			</td>
+		</tr>
 	</table>
 	<?php } ?>
-	<input type="submit" name="btnSubmit" value="Добавить">
-	<input type="button" name="btnCancel" onClick="wndAddArtefact.style.display='none'" value="Отменить">
 </span>
 </form>
 

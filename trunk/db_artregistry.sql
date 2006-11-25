@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 -- 
 -- Host: localhost:3306
--- Generation Time: Nov 21, 2006 at 05:35 PM
+-- Generation Time: Nov 24, 2006 at 05:33 PM
 -- Server version: 5.0.27
 -- PHP Version: 5.1.6
 -- 
@@ -272,6 +272,7 @@ INSERT INTO `artefact` VALUES (210, 2.15, 5, 6, 35);
 CREATE TABLE `artefact_size` (
   `artefact_size_id` int(11) NOT NULL auto_increment,
   `artefact_size_name` varchar(50) NOT NULL,
+  `artefact_size_img` varchar(100) NOT NULL,
   PRIMARY KEY  (`artefact_size_id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 AUTO_INCREMENT=7 ;
 
@@ -279,12 +280,12 @@ CREATE TABLE `artefact_size` (
 -- Dumping data for table `artefact_size`
 -- 
 
-INSERT INTO `artefact_size` VALUES (1, 'крохотный');
-INSERT INTO `artefact_size` VALUES (2, 'малый');
-INSERT INTO `artefact_size` VALUES (3, 'средний');
-INSERT INTO `artefact_size` VALUES (4, 'крупный');
-INSERT INTO `artefact_size` VALUES (5, 'большой');
-INSERT INTO `artefact_size` VALUES (6, 'огромный');
+INSERT INTO `artefact_size` VALUES (1, 'крохотный', 'krokhotniy_aa.gif');
+INSERT INTO `artefact_size` VALUES (2, 'малый', 'maliy_aa.gif');
+INSERT INTO `artefact_size` VALUES (3, 'средний', 'sredniy_aa.gif');
+INSERT INTO `artefact_size` VALUES (4, 'крупный', 'krupniy_aa.gif');
+INSERT INTO `artefact_size` VALUES (5, 'большой', 'bolshoy_aa.gif');
+INSERT INTO `artefact_size` VALUES (6, 'огромный', 'ogromniy_aa.gif');
 
 -- --------------------------------------------------------
 
@@ -296,6 +297,7 @@ CREATE TABLE `artefact_type` (
   `artefact_type_id` int(11) NOT NULL auto_increment,
   `artefact_type_name` varchar(50) NOT NULL,
   `resource_id` int(11) NOT NULL,
+  `artefact_type_img` varchar(100) NOT NULL,
   PRIMARY KEY  (`artefact_type_id`),
   KEY `resource_id` (`resource_id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=36 DEFAULT CHARSET=utf8 AUTO_INCREMENT=36 ;
@@ -304,41 +306,41 @@ CREATE TABLE `artefact_type` (
 -- Dumping data for table `artefact_type`
 -- 
 
-INSERT INTO `artefact_type` VALUES (1, 'сварки', 1);
-INSERT INTO `artefact_type` VALUES (2, 'кузнечного дела', 1);
-INSERT INTO `artefact_type` VALUES (3, 'ковки', 1);
-INSERT INTO `artefact_type` VALUES (4, 'литья', 1);
-INSERT INTO `artefact_type` VALUES (5, 'штамповки', 1);
-INSERT INTO `artefact_type` VALUES (6, 'плавки', 1);
-INSERT INTO `artefact_type` VALUES (7, 'закалки', 1);
-INSERT INTO `artefact_type` VALUES (8, 'синтеза', 2);
-INSERT INTO `artefact_type` VALUES (9, 'кристаллизации', 2);
-INSERT INTO `artefact_type` VALUES (10, 'катализации', 2);
-INSERT INTO `artefact_type` VALUES (11, 'дисперсии', 2);
-INSERT INTO `artefact_type` VALUES (12, 'полимеризации', 2);
-INSERT INTO `artefact_type` VALUES (13, 'охлаждения', 2);
-INSERT INTO `artefact_type` VALUES (14, 'радиолиза', 2);
-INSERT INTO `artefact_type` VALUES (15, 'плазмы', 3);
-INSERT INTO `artefact_type` VALUES (16, 'высокого давления', 3);
-INSERT INTO `artefact_type` VALUES (17, 'сверхпроводимости', 3);
-INSERT INTO `artefact_type` VALUES (18, 'ядерного синтеза', 3);
-INSERT INTO `artefact_type` VALUES (19, 'квантовой оптики', 3);
-INSERT INTO `artefact_type` VALUES (20, 'сенсорики', 3);
-INSERT INTO `artefact_type` VALUES (21, 'термодинамики', 3);
-INSERT INTO `artefact_type` VALUES (22, 'удобрений', 4);
-INSERT INTO `artefact_type` VALUES (23, 'генной инженерии', 4);
-INSERT INTO `artefact_type` VALUES (24, 'поливки', 4);
-INSERT INTO `artefact_type` VALUES (25, 'механизации', 4);
-INSERT INTO `artefact_type` VALUES (26, 'комбикорма', 4);
-INSERT INTO `artefact_type` VALUES (27, 'гидропоники', 4);
-INSERT INTO `artefact_type` VALUES (28, 'клонирования', 4);
-INSERT INTO `artefact_type` VALUES (29, 'атома', 5);
-INSERT INTO `artefact_type` VALUES (30, 'ядерного деления', 5);
-INSERT INTO `artefact_type` VALUES (31, 'квантовой механики', 5);
-INSERT INTO `artefact_type` VALUES (32, 'утилизации', 5);
-INSERT INTO `artefact_type` VALUES (33, 'обогащения', 5);
-INSERT INTO `artefact_type` VALUES (34, 'транспортировки', 5);
-INSERT INTO `artefact_type` VALUES (35, 'экологии', 5);
+INSERT INTO `artefact_type` VALUES (1, 'сварки', 1, 'svarki.gif');
+INSERT INTO `artefact_type` VALUES (2, 'кузнечного дела', 1, 'kuznechnogo_dela.gif');
+INSERT INTO `artefact_type` VALUES (3, 'ковки', 1, 'kovki.gif');
+INSERT INTO `artefact_type` VALUES (4, 'литья', 1, 'litya.gif');
+INSERT INTO `artefact_type` VALUES (5, 'штамповки', 1, 'shtampovki.gif');
+INSERT INTO `artefact_type` VALUES (6, 'плавки', 1, 'plavki.gif');
+INSERT INTO `artefact_type` VALUES (7, 'закалки', 1, 'zakalki.gif');
+INSERT INTO `artefact_type` VALUES (8, 'синтеза', 2, 'sinteza.gif');
+INSERT INTO `artefact_type` VALUES (9, 'кристаллизации', 2, 'kristallizacii.gif');
+INSERT INTO `artefact_type` VALUES (10, 'катализации', 2, 'katalizacii.gif');
+INSERT INTO `artefact_type` VALUES (11, 'дисперсии', 2, 'dispersii.gif');
+INSERT INTO `artefact_type` VALUES (12, 'полимеризации', 2, 'polimerizacii.gif');
+INSERT INTO `artefact_type` VALUES (13, 'охлаждения', 2, 'okhlajdeniya.gif');
+INSERT INTO `artefact_type` VALUES (14, 'радиолиза', 2, 'radioliza.gif');
+INSERT INTO `artefact_type` VALUES (15, 'плазмы', 3, 'plazmi.gif');
+INSERT INTO `artefact_type` VALUES (16, 'высокого давления', 3, 'visokogo_davleniya.gif');
+INSERT INTO `artefact_type` VALUES (17, 'сверхпроводимости', 3, 'sverxprovodimosti.gif');
+INSERT INTO `artefact_type` VALUES (18, 'ядерного синтеза', 3, 'yadernogo_sinteza.gif');
+INSERT INTO `artefact_type` VALUES (19, 'квантовой оптики', 3, 'kvantovoy_optiki.gif');
+INSERT INTO `artefact_type` VALUES (20, 'сенсорики', 3, 'sensoriki.gif');
+INSERT INTO `artefact_type` VALUES (21, 'термодинамики', 3, 'termodinamiki.gif');
+INSERT INTO `artefact_type` VALUES (22, 'удобрений', 4, 'udobreniy.gif');
+INSERT INTO `artefact_type` VALUES (23, 'генной инженерии', 4, 'gennoy_injenerii.gif');
+INSERT INTO `artefact_type` VALUES (24, 'поливки', 4, 'polivki.gif');
+INSERT INTO `artefact_type` VALUES (25, 'механизации', 4, 'mekhanizacii.gif');
+INSERT INTO `artefact_type` VALUES (26, 'комбикорма', 4, 'kombikorma.gif');
+INSERT INTO `artefact_type` VALUES (27, 'гидропоники', 4, 'gidroponiki.gif');
+INSERT INTO `artefact_type` VALUES (28, 'клонирования', 4, 'klonirovaniya.gif');
+INSERT INTO `artefact_type` VALUES (29, 'атома', 5, 'atoma.gif');
+INSERT INTO `artefact_type` VALUES (30, 'ядерного деления', 5, 'yadernogo_deleniya.gif');
+INSERT INTO `artefact_type` VALUES (31, 'квантовой механики', 5, 'kvantovoy_mekhaniki.gif');
+INSERT INTO `artefact_type` VALUES (32, 'утилизации', 5, 'utilizacii.gif');
+INSERT INTO `artefact_type` VALUES (33, 'обогащения', 5, 'obogasheniya.gif');
+INSERT INTO `artefact_type` VALUES (34, 'транспортировки', 5, 'transportirovki.gif');
+INSERT INTO `artefact_type` VALUES (35, 'экологии', 5, 'ekologii.gif');
 
 -- --------------------------------------------------------
 
@@ -375,7 +377,7 @@ CREATE TABLE `player_artefact` (
   `artefact_id` int(11) NOT NULL,
   `player_artefact_date` int(11) NOT NULL,
   PRIMARY KEY  (`player_artefact_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=8 DEFAULT CHARSET=utf8 AUTO_INCREMENT=8 ;
+) ENGINE=MyISAM AUTO_INCREMENT=11 DEFAULT CHARSET=utf8 AUTO_INCREMENT=11 ;
 
 -- 
 -- Dumping data for table `player_artefact`
@@ -388,6 +390,9 @@ INSERT INTO `player_artefact` VALUES (4, 1, 80, 1160081587);
 INSERT INTO `player_artefact` VALUES (5, 1, 97, 1160081587);
 INSERT INTO `player_artefact` VALUES (6, 1, 54, 1163537638);
 INSERT INTO `player_artefact` VALUES (7, 1, 5, 1163537638);
+INSERT INTO `player_artefact` VALUES (8, 1, 3, 1164390146);
+INSERT INTO `player_artefact` VALUES (9, 1, 40, 1164390166);
+INSERT INTO `player_artefact` VALUES (10, 1, 153, 1164390956);
 
 -- --------------------------------------------------------
 
@@ -418,6 +423,7 @@ INSERT INTO `race` VALUES (3, 'псолао');
 CREATE TABLE `resource` (
   `resource_id` int(11) NOT NULL auto_increment,
   `resource_name` varchar(50) NOT NULL,
+  `resource_img` varchar(100) NOT NULL,
   PRIMARY KEY  (`resource_id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 AUTO_INCREMENT=6 ;
 
@@ -425,11 +431,11 @@ CREATE TABLE `resource` (
 -- Dumping data for table `resource`
 -- 
 
-INSERT INTO `resource` VALUES (1, 'кадериум');
-INSERT INTO `resource` VALUES (2, 'нано-кристаллы');
-INSERT INTO `resource` VALUES (3, 'продиум');
-INSERT INTO `resource` VALUES (4, 'еда');
-INSERT INTO `resource` VALUES (5, 'энергия');
+INSERT INTO `resource` VALUES (1, 'кадериум', 'kaderium.gif');
+INSERT INTO `resource` VALUES (2, 'нано-кристаллы', 'nano.gif');
+INSERT INTO `resource` VALUES (3, 'продиум', 'prodium.gif');
+INSERT INTO `resource` VALUES (4, 'еда', 'eda.gif');
+INSERT INTO `resource` VALUES (5, 'энергия', 'energiya.gif');
 
 -- --------------------------------------------------------
 

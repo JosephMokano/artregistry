@@ -1,5 +1,5 @@
 <?php
-
+require_once "lib/Player.class.php";
 {
 	session_start();
 	if(!isset($_SESSION["player"])){
@@ -10,6 +10,6 @@
 
 $player->dbAddArtefact($_POST["artefact"]);
 
-header("Location: index.html");
+header("Location: home.php");
 
 ?>
