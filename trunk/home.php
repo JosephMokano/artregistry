@@ -69,7 +69,8 @@ ORDER BY tbl1.resource_id";
 $rsAllianceBonus = $dblink->query($strSQL);
 
 $strSQL = "SELECT artefact.*, artefact_size.artefact_size_name, artefact_size.artefact_size_img,
-			artefact_type.artefact_type_name, artefact_type.artefact_type_img, resource.resource_name, resource.resource_img
+			artefact_type.artefact_type_name, artefact_type.artefact_type_img,
+			player_artefact.player_artefact_id, resource.resource_name, resource.resource_img
 			FROM player_artefact, artefact, artefact_size, artefact_type, resource
 			WHERE player_artefact.artefact_id=artefact.artefact_id AND
 			artefact.artefact_size_id=artefact_size.artefact_size_id AND
@@ -98,9 +99,38 @@ $rsMyArtefacts = $dblink->query($strSQL);
 </head>
 <script language="javascript">
 
-function init()
+function SelectAll()
 {
+	if(document.form1.mainID.checked)
+	{
+		for(i=0; i<document.form1.selID.length; i++)
+		{
+			document.form1.selID[i].checked=true;
+		}
+	}
+	else
+	{
+		for(i=0; i<document.form1.selID.length; i++)
+		{
+			document.form1.selID[i].checked=false;
+		}
+	}
+}
 
+function deleteSelected()
+{
+	checked=false;
+	if(document.form1.selID.length){
+		for(i=0; i<document.form1.selID.length; i++){
+			if(document.form1.selID[i].checked){checked=true;break;}
+		}
+	}
+	else {
+		if(document.form1.selID.checked){checked=true;}
+	}
+	if(checked){
+		document.form1.submit();
+	}
 }
 
 function addArtefact()
@@ -133,7 +163,7 @@ function switchResourceTab(resId)
 }
 
 </script>
-<body onLoad="init()">
+<body>
 
 <a href="javascript:addArtefact()">Добавить</a>
 Отчет
@@ -162,16 +192,19 @@ function switchResourceTab(resId)
 </table>
 
 <br>
-Мои Артефакты
-<table width="100%" border="0" cellpadding="8" cellspacing="1" bgcolor="#C0C0C0" class="outline">
+<form name="form1" method="POST" action = "del_artefacts.php" style="margin-top: 0px; margin-bottom: 0px;">
+Мои Артефакты <a href="#">Удалить</a>
+<table width="100%" border="0" cellpadding="5" cellspacing="1" bgcolor="#C0C0C0" class="outline">
 	<tr>
-		<th width="5%">№</th>
+		<th width="3%">№</th>
+		<th width="2%"><input type="checkbox" name="mainID" onClick="SelectAll()"></th>
 		<th width="70%">Название артефакта</th>
 		<th width="25%">Бонус</th>
 	</tr>
 	<?php $i=1; while($row = $rsMyArtefacts->fetch_array()){ ?>
 	<tr>
-		<td class="gen"><?php echo $i++; ?></td>
+		<td class="gen" align="center"><?php echo $i++; ?></td>
+		<td class="gen"><input type="checkbox" id="selID" name="selID[]" value="<?php echo $row["player_artefact_id"]; ?>"></td>
 		<td class="gen">
 			<?php
 			$imgFile = substr($row["artefact_size_img"],0, strlen($row["artefact_size_img"])-4) . "_" . substr($row["artefact_type_img"],0, strlen($row["artefact_type_img"])-4). ".gif";
@@ -186,6 +219,7 @@ function switchResourceTab(resId)
 	</tr>
 	<?php } ?>
 </table>
+</form>
 
 <?php
 
